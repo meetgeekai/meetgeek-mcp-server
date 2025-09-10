@@ -1,0 +1,36 @@
+{
+  "type": "module",
+  "name": "mcp-meetgeek",
+  "version": "0.1.0",
+  "description": "MCP server over MeetGeek API",
+  "main": "src/server.ts",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "build": "tsc",
+    "prepare": "npm run build",
+    "dev": "ts-node --watch src/index.ts"
+  },
+  "bin": {
+    "mcp-meetgeek": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "package.json",
+    "README.md"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.9.0",
+    "axios": "^1.8.4",
+    "dotenv": "^10.0.0",
+    "express": "^4.21.2",
+    "raw-body": "^3.0.0",
+    "zod": "^3.24.3"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^6.1.1",
+    "@types/express": "^4.17.13",
+    "@types/node": "^18.19.86",
+    "ts-node": "^10.9.2",
+    "typescript": "^4.9.5"
+  }
+}
