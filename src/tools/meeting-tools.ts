@@ -22,6 +22,7 @@ export class MeetingTools {
     private registerMeetingsTools() {
         this.mcpServer.tool(
             "meetings",
+            "Retrieves paginated past meetings of a user",
             {
                 cursor: z.string().optional(),
                 limit: z.number().optional(),
@@ -49,6 +50,7 @@ export class MeetingTools {
     private registerMeetingDetailsTools() {
         this.mcpServer.tool(
             "meetingDetails",
+            "Get meeting details given a meeting id",
             {
                 meetingId: z.string(),
             },
@@ -75,6 +77,7 @@ export class MeetingTools {
     private registerTranscriptTools() {
         this.mcpServer.tool(
             "transcript",
+            "Get all transcript sentences by meeting id",
             {
                 meetingId: z.string(),
                 cursor: z.string().optional(),
@@ -104,6 +107,7 @@ export class MeetingTools {
     private registerHighlightsTools() {
         this.mcpServer.tool(
             "highlights",
+            "Get all highlights by meeting id",
             {
                 meetingId: z.string(),
             },
@@ -130,6 +134,7 @@ export class MeetingTools {
     private registerSummaryTools() {
         this.mcpServer.tool(
             "summary",
+            "Get summary given the meeting id",
             {
                 meetingId: z.string(),
             },
@@ -156,6 +161,7 @@ export class MeetingTools {
     private registerTeamMeetingsTools() {
         this.mcpServer.tool(
             "teamMeetings",
+            "Retrieves paginated past meetings of a user",
             {
                 teamId: z.string(),
                 cursor: z.string().optional(),
@@ -186,6 +192,7 @@ export class MeetingTools {
     // private registerUploadRecordingTools() {
     //     this.mcpServer.tool(
     //         "uploadRecording",
+    //         "Upload a video or audio file for analysis and receive a notification upon completion",
     //         {
     //             download_url: z.string(),
     //             language_code: z.string(),
