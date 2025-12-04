@@ -54,8 +54,8 @@ export class MeetgeekApiService {
     }
 
     // TODO: Future implementation
-    // async uploadRecording(params: UploadRecordingParams) {
-    //     const response = await this.client.post("/upload", params);
-    //     return response.data;
-    // }
+    async uploadRecording(params: UploadRecordingParams) {
+        const response = await this.client.post("/upload", params);
+        return response.data;
+    }
 }

@@ -19,16 +19,26 @@ export class MeetingTools {
         // this.registerUploadRecordingTools();
     }
 
-    private registerMeetingsTools() {
-        this.mcpServer.tool(
+    private registerMeetingsTools(): void {
+        this.mcpServer.registerTool(
             "meetings",
-            "Retrieves paginated past meetings of a user",
             {
-                cursor: z.string().optional(),
-                limit: z.number().optional(),
+                title: "List User Meetings",
+                description: "Retrieves paginated past meetings of a user",
+                inputSchema: {
+                    cursor: z.string().optional(),
+                    limit: z.number().optional(),
+                },
+                annotations: {
+                    readOnlyHint: true,
+                    destructiveHint: false,
+                    idempotentHint: true,
+                    openWorldHint: true,
+                },
             },
             async (args) => {
                 try {
+                    // The callback function remains the third argument
                     const data = await this.apiService.getMeetings(args);
                     return {
                         content: [{ type: "text", text: JSON.stringify(data, null, 2) }],
@@ -43,16 +53,25 @@ export class MeetingTools {
                         ],
                     };
                 }
-            }
+            },
         );
     }
 
     private registerMeetingDetailsTools() {
-        this.mcpServer.tool(
+        this.mcpServer.registerTool(
             "meetingDetails",
-            "Get meeting details given a meeting id",
             {
-                meetingId: z.string(),
+                title: "Get Meeting Details",
+                description: "Get meeting details given a meeting id",
+                inputSchema: {
+                    meetingId: z.string(),
+                },
+                annotations: {
+                    readOnlyHint: true,
+                    destructiveHint: false,
+                    idempotentHint: true,
+                    openWorldHint: true,
+                },
             },
             async (args) => {
                 try {
@@ -75,13 +94,22 @@ export class MeetingTools {
     }
 
     private registerTranscriptTools() {
-        this.mcpServer.tool(
+        this.mcpServer.registerTool(
             "transcript",
-            "Get all transcript sentences by meeting id",
             {
-                meetingId: z.string(),
-                cursor: z.string().optional(),
-                limit: z.number().optional(),
+                title: "Get Meeting Transcript",
+                description: "Get all transcript sentences by meeting id",
+                inputSchema: {
+                    meetingId: z.string(),
+                    cursor: z.string().optional(),
+                    limit: z.number().optional(),
+                },
+                annotations: {
+                    readOnlyHint: true,
+                    destructiveHint: false,
+                    idempotentHint: true,
+                    openWorldHint: true,
+                },
             },
             async (args) => {
                 try {
@@ -105,11 +133,20 @@ export class MeetingTools {
     }
 
     private registerHighlightsTools() {
-        this.mcpServer.tool(
+        this.mcpServer.registerTool(
             "highlights",
-            "Get all highlights by meeting id",
             {
-                meetingId: z.string(),
+                title: "Get Meeting Highlights",
+                description: "Get all highlights by meeting id",
+                inputSchema: {
+                    meetingId: z.string(),
+                },
+                annotations: {
+                    readOnlyHint: true,
+                    destructiveHint: false,
+                    idempotentHint: true,
+                    openWorldHint: true,
+                },
             },
             async (args) => {
                 try {
@@ -132,11 +169,20 @@ export class MeetingTools {
     }
 
     private registerSummaryTools() {
-        this.mcpServer.tool(
+        this.mcpServer.registerTool(
             "summary",
-            "Get summary given the meeting id",
             {
-                meetingId: z.string(),
+                title: "Get Meeting Summary",
+                description: "Get summary given the meeting id",
+                inputSchema: {
+                    meetingId: z.string(),
+                },
+                annotations: {
+                    readOnlyHint: true,
+                    destructiveHint: false,
+                    idempotentHint: true,
+                    openWorldHint: true,
+                }
             },
             async (args) => {
                 try {
@@ -159,13 +205,22 @@ export class MeetingTools {
     }
 
     private registerTeamMeetingsTools() {
-        this.mcpServer.tool(
+        this.mcpServer.registerTool(
             "teamMeetings",
-            "Retrieves paginated past meetings of a user",
             {
-                teamId: z.string(),
-                cursor: z.string().optional(),
-                limit: z.number().optional(),
+                title: "List Team Meetings",
+                description: "Retrieves paginated past meetings of a user",
+                inputSchema: {
+                    teamId: z.string(),
+                    cursor: z.string().optional(),
+                    limit: z.number().optional(),
+                },
+                annotations: {
+                    readOnlyHint: true,
+                    destructiveHint: false,
+                    idempotentHint: true,
+                    openWorldHint: true,
+                }
             },
             async (args) => {
                 try {
@@ -189,32 +244,41 @@ export class MeetingTools {
     }
 
     // TODO: Future implementation
-    // private registerUploadRecordingTools() {
-    //     this.mcpServer.tool(
-    //         "uploadRecording",
-    //         "Upload a video or audio file for analysis and receive a notification upon completion",
-    //         {
-    //             download_url: z.string(),
-    //             language_code: z.string(),
-    //             template_name: z.string().optional(),
-    //         },
-    //         async (args) => {
-    //             try {
-    //                 const data = await this.apiService.uploadRecording(args);
-    //                 return {
-    //                     content: [{ type: "text", text: JSON.stringify(data, null, 2) }],
-    //                 };
-    //             } catch (error) {
-    //                 return {
-    //                     content: [
-    //                         {
-    //                             type: "text",
-    //                             text: `Error uploading recording: ${error instanceof Error ? error.message : 'Unknown error'}`,
-    //                         },
-    //                     ],
-    //                 };
-    //             }
-    //         }
-    //     );
-    // }
+    private registerUploadRecordingTools() {
+        this.mcpServer.registerTool(
+            "uploadRecording",
+            {
+                title: "Upload Recording",
+                description: "Upload a video or audio file for analysis and receive a notification upon completion",
+                inputSchema: {
+                    download_url: z.string(),
+                    language_code: z.string(),
+                    template_name: z.string().optional(),
+                },
+                annotations: {
+                    readOnlyHint: false,
+                    destructiveHint: true,
+                    idempotentHint: false,
+                    openWorldHint: false,
+                }
+            },
+            async (args) => {
+                try {
+                    const data = await this.apiService.uploadRecording(args);
+                    return {
+                        content: [{ type: "text", text: JSON.stringify(data, null, 2) }],
+                    };
+                } catch (error) {
+                    return {
+                        content: [
+                            {
+                                type: "text",
+                                text: `Error uploading recording: ${error instanceof Error ? error.message : 'Unknown error'}`,
+                            },
+                        ],
+                    };
+                }
+            }
+        );
+    }
 }
