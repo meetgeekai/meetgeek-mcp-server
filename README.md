@@ -17,6 +17,7 @@ For details on how MeetGeek handles user data, please review our official privac
 * **Get Meeting Transcripts:** Access full transcriptions with speaker identification and timestamps
 * **Get Meeting Highlights:** Retrieve AI-generated key moments and insights
 * **Get Meeting Summaries:** Access AI-powered meeting summaries and action items
+* **Get Meeting Insights:** Access productivity scores, engagement metrics, speaker analytics, and improvement recommendations
 * **Team Meetings:** Retrieve meetings for specific teams with filtering capabilities
 * **Upload Recordings:** Import meeting recordings directly via download URLs
 
