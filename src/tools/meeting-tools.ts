@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { MeetgeekApiService } from "../services/meetgeek-api.js";
+import { languageCodes } from "../constants/meetgeek-constants.js";
 
 export class MeetingTools {
     constructor(
@@ -15,8 +16,8 @@ export class MeetingTools {
         this.registerHighlightsTools();
         this.registerSummaryTools();
         this.registerTeamMeetingsTools();
-        // TODO: Future implementation
-        // this.registerUploadRecordingTools();
+        this.registerInsightsTools();
+        this.registerUploadRecordingTools();
     }
 
     private registerMeetingsTools(): void {
@@ -38,7 +39,6 @@ export class MeetingTools {
             },
             async (args) => {
                 try {
-                    // The callback function remains the third argument
                     const data = await this.apiService.getMeetings(args);
                     return {
                         content: [{ type: "text", text: JSON.stringify(data, null, 2) }],
@@ -204,6 +204,42 @@ export class MeetingTools {
         );
     }
 
+    private registerInsightsTools() {
+        this.mcpServer.registerTool(
+            "insights",
+            {
+                title: "Get Meeting Insights",
+                description: "Get all insights by meeting id",
+                inputSchema: {
+                    meetingId: z.string(),
+                },
+                annotations: {
+                    readOnlyHint: true,
+                    destructiveHint: false,
+                    idempotentHint: true,
+                    openWorldHint: true,
+                },
+            },
+            async (args) => {
+                try {
+                    const data = await this.apiService.getInsights(args.meetingId);
+                    return {
+                        content: [{ type: "text", text: JSON.stringify(data, null, 2) }],
+                    };
+                } catch (error) {
+                    return {
+                        content: [
+                            {
+                                type: "text",
+                                text: `Error fetching insights: ${error instanceof Error ? error.message : 'Unknown error'}`,
+                            },
+                        ],
+                    };
+                }
+            }
+        )
+    }
+
     private registerTeamMeetingsTools() {
         this.mcpServer.registerTool(
             "teamMeetings",
@@ -243,7 +279,6 @@ export class MeetingTools {
         );
     }
 
-    // TODO: Future implementation
     private registerUploadRecordingTools() {
         this.mcpServer.registerTool(
             "uploadRecording",
@@ -252,7 +287,7 @@ export class MeetingTools {
                 description: "Upload a video or audio file for analysis and receive a notification upon completion",
                 inputSchema: {
                     download_url: z.string(),
-                    language_code: z.string(),
+                    language_code: z.enum(languageCodes),
                     template_name: z.string().optional(),
                 },
                 annotations: {

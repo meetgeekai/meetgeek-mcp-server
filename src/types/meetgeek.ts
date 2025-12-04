@@ -1,16 +1,16 @@
-export interface Meeting {
-    id: string;
-    title?: string;
-    startTime?: string;
-    endTime?: string;
-    participants?: string[];
-}
+// export interface Meeting {
+//     id: string;
+//     title?: string;
+//     startTime?: string;
+//     endTime?: string;
+//     participants?: string[];
+// }
 
-export interface MeetingDetails extends Meeting {
-    transcript?: string;
-    summary?: string;
-    highlights?: string[];
-}
+// export interface MeetingDetails extends Meeting {
+//     transcript?: string;
+//     summary?: string;
+//     highlights?: string[];
+// }
 
 export interface PaginationParams {
     cursor?: string;

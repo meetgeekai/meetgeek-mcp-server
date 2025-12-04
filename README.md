@@ -8,7 +8,7 @@ You can also check [here](https://support.meetgeek.ai/en/articles/11939580-mcp-s
 ## Privacy Policy
 
 This MCP server connects to the MeetGeek API to access meeting data.  
-For details on how MeetGeek handles user data, please review their official privacy policy: [MeetGeek Privacy Policy](https://www.meetgeek.ai/privacy)
+For details on how MeetGeek handles user data, please review our official privacy policy: [MeetGeek Privacy Policy](https://www.meetgeek.ai/privacy)
 
 ## Features
 

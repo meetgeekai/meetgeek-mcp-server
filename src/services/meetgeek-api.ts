@@ -46,6 +46,11 @@ export class MeetgeekApiService {
         return response.data;
     }
 
+    async getInsights(meetingId: string) {
+        const response = await this.client.get(`/meetings/${meetingId}/insights`);
+        return response.data;
+    }
+
     async getTeamMeetings(teamId: string, params: PaginationParams = {}) {
         const response = await this.client.get(`/teams/${teamId}/meetings`, {
             params,
@@ -53,7 +58,6 @@ export class MeetgeekApiService {
         return response.data;
     }
 
-    // TODO: Future implementation
     async uploadRecording(params: UploadRecordingParams) {
         const response = await this.client.post("/upload", params);
         return response.data;
