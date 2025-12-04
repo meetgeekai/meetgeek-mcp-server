@@ -5,6 +5,11 @@
 This project provides a Model Context Protocol (MCP) server enabling seamless interaction with the [MeetGeek](https://meetgeek.ai/) API. As the pioneering MCP solution for MeetGeek's meeting intelligence platform, it unlocks the power of AI-driven meeting insights, transcriptions, and analytics through a standardized interface. This integration allows AI models and MCP clients to access, analyze, and derive insights from your meetings recorded and processed by MeetGeek.<br><br>
 You can also check [here](https://support.meetgeek.ai/en/articles/11939580-mcp-server) our quick-start guide for setting up the MeetGeek MCP Server.
 
+## Privacy Policy
+
+This MCP server connects to the MeetGeek API to access meeting data.  
+For details on how MeetGeek handles user data, please review their official privacy policy: [MeetGeek Privacy Policy](https://www.meetgeek.ai/privacy)
+
 ## Features
 
 * **List Meetings:** Retrieve all meetings with pagination support
