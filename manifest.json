@@ -1,0 +1,64 @@
+{
+  "manifest_version": "0.2",
+  "name": "mcp-meetgeek",
+  "version": "0.1.0",
+  "description": "MCP server over MeetGeek API",
+  "author": {
+    "name": "Ilinca Sebastian",
+    "email": "sebastian@meetgeek.ai"
+  },
+  "documentation": "https://github.com/meetgeekai/meetgeek-mcp-server/blob/main/README.md",
+  "server": {
+    "type": "node",
+    "entry_point": "dist/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/dist/index.js"
+      ],
+      "env": {
+        "MEETGEEK_API_KEY": "eu-38Djalhy5ovnZSVGENUBWwNrcoftQAcJHNhXo8rMNUjuFhqqNSBdeFOnlFuHym0EanhuzN157k2lHtWr3tMCDm82Goq65cakJCxdaRxQILVWUDLSMdbS3YXkYZHcf",
+        "MEETGEEK_BASE_URL": "https://api.meetgeek.ai"
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "meetings",
+      "description": "List all meetings"
+    },
+    {
+      "name": "meetingDetails",
+      "description": "Get details of a meeting"
+    },
+    {
+      "name": "transcript",
+      "description": "Fetch meeting transcript"
+    },
+    {
+      "name": "highlights",
+      "description": "Get key points from a meeting"
+    },
+    {
+      "name": "summary",
+      "description": "Get a meeting summary"
+    },
+    {
+      "name": "insights",
+      "description": "Get insights for a meeting"
+    },
+    {
+      "name": "teamMeetings",
+      "description": "List meetings for a team"
+    },
+    {
+      "name": "uploadRecording",
+      "description": "Upload a meeting recording"
+    }
+  ],
+  "license": "As-is, for integration with MeetGeek API via MCP.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/meetgeekai/meetgeek-mcp-server"
+  }
+}
