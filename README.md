@@ -61,7 +61,7 @@ Update your `claude_desktop_config.json` file (typically located in `~/Library/A
 ```json
 {
   "mcpServers": {
-    "meetgeek": {
+    "MeetGeek": {
       "command": "node",
       "args": ["/absolute/path/to/your/meetgeek-mcp-server/dist/index.js"],
       "env": {
@@ -80,9 +80,9 @@ Refer to your specific MCP client's documentation for configuration details. The
 ```json
 {
   "mcpServers": {
-    "meetgeek": {
+    "MeetGeek": {
       "command": "node",
-      "args": ["/absolute/path/to/meetgeek-mcp-server/dist/index.js"],
+      "args": ["/absolute/path/to/MeetGeek-mcp-server/dist/index.js"],
       "env": {
         "MEETGEEK_API_KEY": "your_meetgeek_api_key_here",
         "MEETGEEK_BASE_URL": "https://api.meetgeek.ai"
